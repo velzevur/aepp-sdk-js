@@ -25,16 +25,34 @@
 // We'll need the main client module `Ae` in the `Universal` flavor from the SDK.
 const { Universal: Ae } = require('@aeternity/aepp-sdk')
 const program = require('commander')
-
-function spend (receiver, amount, { host, debug }) {
+let tx, result
+async function spend (receiver, amount, { host, debug }) {
   // This code is relatively simple: We create the Ae client asynchronously and
   // invoke the spend method on it. Passing in `process` from nodejs will make
   // the implementation grab the key pair from the `WALLET_PRIV` and
   // `WALLET_PUB` environment variables, respectively.
-  Ae({ url: host, debug, process })
-    .then(ae => ae.spend(parseInt(amount), receiver))
-    .then(tx => console.log('Transaction mined', tx))
-    .catch(e => console.log(e.message))
+  // Ae({ url: host, debug, process })
+
+  const ae = await Ae({
+    url: host,
+    internalUrl: host,
+    debug
+  })
+
+  try {
+    tx = await ae.spend(parseInt(amount), receiver)
+  } catch (e) {
+    console.log('ERROR while creating spend transaction: ', e)
+  }
+
+  if (tx) {
+    try {
+      result = await tx
+    } catch (e) {
+      console.log('ERROR during mining: ', e)
+    }
+  }
+  console.log(result)
 }
 
 // ## Command Line Interface
