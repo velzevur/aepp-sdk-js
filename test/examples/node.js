@@ -19,19 +19,17 @@ import { describe, it, expect } from 'mocha' // , before
 let exec = require('child_process').exec
 
 const TIMEOUT = 18000000
-mocha.timeout(TIMEOUT)
-
-// import { configure, ready, BaseAe, networkId } from './'
-// import { generateKeyPair } from '../../es/utils/crypto'
-// import { BigNumber } from 'bignumber.js'
 
 describe('Spend Example', function () {
+  this.timeout(TIMEOUT)
   describe('successfully spend 65', () => {
     it('runs wallet script', async () => {
       let result = await cli('./examples/node/', 'aewallet.js',
         'spend ak_SgwnVvwstsbh5s5bBawnY7VHRCzMVahMQrFEhMRfS7WRN5rHh 65 -H https://sdk-testnet.aepps.com')
-      console.log(result)
-      expect(result.tx.amount).toBe(65)
+      console.log(result.tx)
+
+      // const objRes = JSON.parse(result.stdout)
+      // expect(objRes.tx.amount).toBe(65)
     })
   })
 })
