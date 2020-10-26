@@ -1,175 +1,64 @@
-# [Æternity](https://aeternity.com/)'s JavaScript SDK
+# JavaScript SDK Documentation
 
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/aeternity/aepp-sdk-js.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/aeternity/aepp-sdk-js/context:javascript)
-[![codecov](https://codecov.io/gh/aeternity/aepp-sdk-js/branch/develop/graph/badge.svg)](https://codecov.io/gh/aeternity/aepp-sdk-js)
-[![Build Status](https://travis-ci.com/aeternity/aepp-sdk-js.svg?branch=develop)](http://travis-ci.com/aeternity/aepp-sdk-js?branch=develop)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![npm](https://img.shields.io/npm/v/@aeternity/aepp-sdk.svg)](https://www.npmjs.com/package/@aeternity/aepp-sdk)
-[![npm](https://img.shields.io/npm/l/@aeternity/aepp-sdk.svg)](https://www.npmjs.com/package/@aeternity/aepp-sdk) 
-[![Greenkeeper badge](https://badges.greenkeeper.io/aeternity/aepp-sdk-js.svg)](https://greenkeeper.io/)
-JavaScript SDK for the revolutionary [æternity] blockchain, targeting the
-[æternity node] implementation. Aepp-sdk is [hosted on GitHub].
+## ⚠️ Disclaimer
+We're doing our best to keep the documentation up to date, but [please let us know if you see some out-of-date file](https://github.com/aeternity/aepp-sdk-js/issues/new). Thanks!
 
-[æternity]: https://aeternity.com/
-[æternity node]: https://github.com/aeternity/aeternity
-[hosted on GitHub]: https://github.com/aeternity/aepp-sdk-js
+## Intro
+There are three different ways of incorporating aepp-sdk-js into your project, depending on the particular scenario:
+* ES Modules at `es/` (recommended)
+* Node.js bundle at `dist/aepp-sdk.js`
+* Browser bundle at `dist/aepp-sdk.browser.js`
+* Browser bundle for using through \<script\> tag at `dist/aepp-sdk.browser-script.js`
 
-[develop branch]: https://github.com/aeternity/aepp-sdk-js/tree/develop
+Also, please be aware that using `require` instead of module loader syntax
+(`import`) means that the default export automatically becomes exposed as
+`default`, which is reflected below in the code examples. This is due to a
+recent change in [Babel] compilation and fully compliant with the standard.
 
-## Table of content
-- [Æternity's JavaScript SDK](#%C3%86ternitys-Javascript-SDK)
-  - [Table of content](#Table-of-content)
-  - [Quick Start](#Quick-Start)
-    - [1. Install SDK](#1-Install-SDK)
-      - [A) Simple Usage: with `<script>` tag](#A-Simple-Usage-with-script-tag)
-      - [B) Advanced Usage: with `npm` or similar](#B-Advanced-Usage-with-npm-or-similar)
-    - [2. Create an Account](#2-Create-an-Account)
-      - [A) Using the Command Line](#A-Using-the-Command-Line)
-      - [B) Using the SDK](#B-Using-the-SDK)
-    - [3. Give yourself some _AE_ tokens](#3-Give-yourself-some-AE-tokens)
-    - [4. Import (a chosen Flavor)](#4-Import-a-chosen-Flavor)
-    - [5. Play with Aetenity's blockchain features](#5-Play-with-Aetenitys-blockchain-features)
-  - [More: Guides & Examples](#More-Guides--Examples)
-  - [CLI - Command Line Client](#CLI---Command-Line-Client)
-  - [Contributing](#Contributing)
-  - [Change Log](#Change-Log)
-  - [License](#License)
+### Flavors / Entry Points
 
-## Quick Start
+The recommended approach to use aepp-sdk is to import one of the following _Ae
+Factories_ based on the specific use case:
 
-### 1. Install SDK
-#### A) Simple Usage: with `<script>` tag
-For those not using any JS bundling/complilation or compilation technique or tools like [_Codepen_](https://codepen.io/pen/) or similar online Editors, please check our [**Import SDK bundle with `<script>` tag**](docs/guides/import-script-tag.md).
+* [@aeternity/aepp-sdk/es/ae/wallet](api/ae/wallet.md): for **Wallet**'s focused development
+* [@aeternity/aepp-sdk/es/ae/contract](api/ae/contract.md): for **Contract**'s focused development
+* [@aeternity/aepp-sdk/es/ae/aepp](api/ae/aepp.md): for **Web Aepp**'s focused development ⚠️ **_No Wallet support_**
+* [@aeternity/aepp-sdk/es/ae/aens](api/ae/aens.md): for **AENs**' focused development
+* [@aeternity/aepp-sdk/es/ae/oracle](api/ae/oracle.md): for **Oracle**'s focused development
+* [@aeternity/aepp-sdk/es/ae/universal](api/ae/universal.md): for **Universal** development (includes all SDK features)
 
-If you're using bundling/compilation techniques (eg. `webpack`), please continue reading.
+In order to cater more specific needs, it is recommended to refer to the
+[contributing Docs](contrib/README.md).
 
-#### B) Advanced Usage: with `npm` or similar
-Add the latest `@aeternity/aepp-sdk` release from npmjs.com to your project using one of these commands
+### Testing Networks
+When initialising a client, to test, you can use Aeternity's Test Nework URLs:
 
-```bash
-# install using npm...or yarn or pnpm
-npm i @aeternity/aepp-sdk
-```
+### Testnet (https://sdk-testnet.aepps.com)
+You can use this URL with any releasee on [npmjs](https://www.npmjs.com/package/@aeternity/aepp-sdk). It offers the last stable version of [Node](https://github.com/aeternity/aeternity), used by all of of Aeternity's Dev Tools.
 
-**Note:** To install a _Pre-Release_ (latest `beta` or `alpha` version) using on the latest Node version, you have to install the package appending the `@next` tag reference, or even use the `#` symbol and the Repo URL to install a version coming from a specific branch.
-```bash
-# install the @next version of the SDK
-npm i @aeternity/aepp-sdk@next
+## Guides
+### Import SDK
+  - Browser
+    - [Import SDK bundle with **`<script>`** tag](guides/import-script-tag.md)
+    - [Import SDK **ES Modules** (enabling Tree-Shaking)](guides/import-tree-shaking.md)
+    - [Import SDK in **VueJS**](guides/import-vuejs.md)
+  - NodeJS Environment
+    - [Import SDK in **NodeJS**](guides/import-nodejs.md)
 
-# install the #develop version of the SDK
-npm i https://github.com/aeternity/aepp-sdk-js#develop
-```
+### SDK basics
+   - [**SDK usage** Understanding low vs high level](guides/low-vs-high-usage.md)
 
-**Note** : If you experience errors during the installation, you might need to install build tools for your OS.
+### Contract Usage
+ - [Contract ACI](guides/contract-aci-usage.md)
+ - [Contract Events](guides/contract-events.md)
+ - [AENS delegation signature](guides/delegate-signature-to-contract.md)
+ - [AENS usage](guides/aens-usage.md)
 
-Windows: Windows Build Tools
-```
-npm install -g windows-build-tools
-```
-Ubuntu / Debian: Build Essential
-```
-sudo apt-get update
-sudo apt-get install build-essential
-```
-Mac:
-Download [Xcode](https://apps.apple.com/de/app/xcode/id497799835?mt=12) from AppStore, then run
-```
-xcode-select --install
-```
+### New Wallet/Aepp API
+ - [How to build Wallet app/extension](guides/how-to-build-an-wallet-app-or-extension.md)
+ - [How to build Aepp](guides/how-to-build-aepp-using-new-wallet-api.md)
 
-### 2. Create an Account
-You can do many more things now, but you'll probably have to start with:
+## [API Reference](api.md)
 
-#### A) Using the Command Line
-Create an account using the [💻 CLI](#cli---command-line-client)
-
-#### B) Using the SDK
-
-```javascript
-  import { Crypto } from '@aeternity/aepp-sdk/es'
-  const keypair = Crypto.generateKeyPair()
-  console.log(`Secret key: ${keypair.secretKey}`)
-  console.log(`Public key: ${keypair.publicKey}`)
-```
-
-### 3. Give yourself some _AE_ tokens
-To get yourself some _AEs_ you can use the [🚰 Faucet Aepp](https://faucet.aepps.com/). Just add your publicKey, and you'll immediately get some test tokens.
-
-
-### 4. Import (a chosen Flavor)
-
-Import the right [flavor](docs/README.md#flavors--entry-points). For this example with get the `Universal` flavor, which contains all the features of the SDK:
-
-```js
-// Import Flavor
-import Ae from '@aeternity/aepp-sdk/es/ae/universal' // or other flavor
-```
-
-### 5. Play with Aetenity's blockchain features
-
-```js
-// Use Flavor
-import Ae from '@aeternity/aepp-sdk/es/ae/universal' // or other flavor
-import MemoryAccount from '@aeternity/aepp-sdk/es/account/memory' // or other flavor
-import Node from '@aeternity/aepp-sdk/es/node' // or other flavor
-import { AE_AMOUNT_FORMATS } from '@aeternity/aepp-sdk/es/utils/amount-formatter'
-
-const NODE_URL = 'https://sdk-testnet.aepps.com'
-const COMPILER_URL = 'COMPILER_URL' // required for using Contract
-const ACCOUNT = MemoryAccount({ keypair: { secretKey: 'A_PRIV_KEY', publicKey: 'A_PUB_ADDRESS' } })
-
-(async function () {
-  const nodeInstance = await Node({ url: NODE_URL })
-  const sdkInstance = await Ae({
-     compilerUrl: COMPILER_URL,
-     nodes: [ { name: 'test-net', instance: nodeInstance } ],
-     accounts: [ ACCOUNT ]
-  })
-
-  await sdkInstance.height() // get top block height
-  console.log('Current Block Height:', height)
-  
-  await sdkInstance.spend(1, 'ak_asd23dasdasda...', { denomination: AE_AMOUNT_FORMATS.AE }) // spend one AE
-
-})()
-```
-
-## More: Guides & Examples
-
-Check out our [Guides](docs/README.md) and [Examples](examples/README.md).
-
-## CLI - Command Line Client
-
-To quickly test _all_ of Aeternity's blockchain features from your Terminal, you can Install and use our **NodeJS [CLI](https://github.com/aeternity/aepp-cli-js)** by running:
-
-1. `npm i -g @aeternity/aepp-cli` to globally install the CLI
-2. `aecli --help` to get a list of possible commands
-
-_eg._ Create an Account:
-
-`aecli account create testWhateverAccountName`
-
-## Contributing
-
-For advanced use, to get a deeper understanding of the SDK or to contribute to its development, it is advised to read the [Contributing Guidelines](docs/contrib/README.md) section.
-
-## Change Log
-
-We keep our [Changelog](CHANGELOG.md) up to date.
-
-## License
-
-ISC License (ISC)
-Copyright © 2018 aeternity developers
-
-Permission to use, copy, modify, and/or distribute this software for any purpose
-with or without fee is hereby granted, provided that the above copyright notice
-and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
-OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
-THIS SOFTWARE.
+## Examples
+Check out our [Examples](examples/README.md) for more.
