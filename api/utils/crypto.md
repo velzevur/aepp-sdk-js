@@ -39,7 +39,7 @@ import * as Crypto from '@aeternity/aepp-sdk/es/utils/crypto'
         * [.generateSaveWallet(password)](#module_@aeternity/aepp-sdk/es/utils/crypto.generateSaveWallet) ⇒ `Object`
         * [.decryptPrivateKey(password)](#module_@aeternity/aepp-sdk/es/utils/crypto.decryptPrivateKey) ⇒ `Buffer`
         * [.decryptPubKey(password)](#module_@aeternity/aepp-sdk/es/utils/crypto.decryptPubKey) ⇒ `Buffer`
-        * [.assertedType(data, type, forceError)](#module_@aeternity/aepp-sdk/es/utils/crypto.assertedType) ⇒ `String` \| `Boolean`
+        * [.assertedType(data, type, omitError)](#module_@aeternity/aepp-sdk/es/utils/crypto.assertedType) ⇒ `String` \| `Boolean`
         * [.decodeTx(txHash)](#module_@aeternity/aepp-sdk/es/utils/crypto.decodeTx) ⇒ `Buffer`
         * [.encodeTx(txData)](#module_@aeternity/aepp-sdk/es/utils/crypto.encodeTx) ⇒ `String`
         * [.isValidKeypair(privateKey, publicKey)](#module_@aeternity/aepp-sdk/es/utils/crypto.isValidKeypair) ⇒ `Boolean`
@@ -436,7 +436,7 @@ Decrypt an encrypted public key
 
 <a id="module_@aeternity/aepp-sdk/es/utils/crypto.assertedType"></a>
 
-### @aeternity/aepp-sdk/es/utils/crypto.assertedType(data, type, forceError) ⇒ `String` \| `Boolean`
+### @aeternity/aepp-sdk/es/utils/crypto.assertedType(data, type, omitError) ⇒ `String` \| `Boolean`
 Assert encoded type and return its payload
 
 **Kind**: static method of [`@aeternity/aepp-sdk/es/utils/crypto`](#module_@aeternity/aepp-sdk/es/utils/crypto)  
@@ -447,7 +447,7 @@ Assert encoded type and return its payload
 | --- | --- | --- |
 | data | `String` | ae data |
 | type | `String` | Prefix |
-| forceError |  |  |
+| omitError | `Boolean` | Return false instead of throwing the error if data doesn't match expected type |
 
 <a id="module_@aeternity/aepp-sdk/es/utils/crypto.decodeTx"></a>
 
