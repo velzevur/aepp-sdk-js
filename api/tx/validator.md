@@ -62,5 +62,5 @@ to make sure we can post it to the chain
 
 **Example**  
 ```js
-TransactionValidator({url: 'https://sdk-testnet.aepps.com'})
+TransactionValidator({url: 'https://testnet.aeternity.io'})
 ```

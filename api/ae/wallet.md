@@ -30,7 +30,7 @@ Wallet Stamp
 **Example**  
 ```js
 Wallet({
-  url: 'https://sdk-testnet.aepps.com/',
+  url: 'https://testnet.aeternity.io/',
   accounts: [MemoryAccount({keypair})],
   address: keypair.publicKey,
   onTx: confirm,

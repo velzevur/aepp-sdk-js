@@ -37,7 +37,7 @@ import Node from '@aeternity/aepp-sdk/es/node'
 
 **Example**  
 ```js
-Node({url: 'https://sdk-testnet.aepps.com'})
+Node({url: 'https://testnet.aeternity.io'})
 ```
 <a id="module_@aeternity/aepp-sdk/es/node--Node.getNetworkId"></a>
 

@@ -27,5 +27,5 @@ composed with [module:@aeternity/aepp-sdk/es/contract/node--ContractNodeAPI](mod
 
 **Example**  
 ```js
-ChainNode({url: 'https://sdk-testnet.aepps.com/'})
+ChainNode({url: 'https://testnet.aeternity.io/'})
 ```

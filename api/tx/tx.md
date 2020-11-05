@@ -34,5 +34,5 @@ implementations.
 
 **Example**  
 ```js
-Transaction({url: 'https://sdk-testnet.aepps.com/'})
+Transaction({url: 'https://testnet.aeternity.io/'})
 ```
