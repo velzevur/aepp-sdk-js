@@ -7,9 +7,9 @@ Universal module
 ```js
 import Ae from '@aeternity/aepp-sdk/es/ae/universal'
 ```
-<a id="exp_module_@aeternity/aepp-sdk/es/ae/universal--exports.Universal"></a>
+<a id="exp_module_@aeternity/aepp-sdk/es/ae/universal--module.exports"></a>
 
-### exports.Universal([options]) ⇒ `Object` ⏏
+### module.exports([options]) ⇒ `Object` ⏏
 Universal Stamp
 
 Universal provides Ae base functionality with Contract and Aens
