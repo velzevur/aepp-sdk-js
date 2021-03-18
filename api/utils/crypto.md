@@ -40,7 +40,7 @@ import * as Crypto from '@aeternity/aepp-sdk/es/utils/crypto'
         * [.decryptPrivateKey(password)](#module_@aeternity/aepp-sdk/es/utils/crypto.decryptPrivateKey) ⇒ `Buffer`
         * [.decryptPubKey(password)](#module_@aeternity/aepp-sdk/es/utils/crypto.decryptPubKey) ⇒ `Buffer`
         * [.assertedType(data, type, omitError)](#module_@aeternity/aepp-sdk/es/utils/crypto.assertedType) ⇒ `String` \| `Boolean`
-        * [.decodeTx(txHash)](#module_@aeternity/aepp-sdk/es/utils/crypto.decodeTx) ⇒ `Buffer`
+        * [.decodeTx(encodedTx)](#module_@aeternity/aepp-sdk/es/utils/crypto.decodeTx) ⇒ `Buffer`
         * [.encodeTx(txData)](#module_@aeternity/aepp-sdk/es/utils/crypto.encodeTx) ⇒ `String`
         * [.isValidKeypair(privateKey, publicKey)](#module_@aeternity/aepp-sdk/es/utils/crypto.isValidKeypair) ⇒ `Boolean`
         * [.encryptData(msg, publicKey)](#module_@aeternity/aepp-sdk/es/utils/crypto.encryptData) ⇒ `Object`
@@ -450,7 +450,7 @@ Assert encoded type and return its payload
 
 <a id="module_@aeternity/aepp-sdk/es/utils/crypto.decodeTx"></a>
 
-### @aeternity/aepp-sdk/es/utils/crypto.decodeTx(txHash) ⇒ `Buffer`
+### @aeternity/aepp-sdk/es/utils/crypto.decodeTx(encodedTx) ⇒ `Buffer`
 Decode a transaction
 
 **Kind**: static method of [`@aeternity/aepp-sdk/es/utils/crypto`](#module_@aeternity/aepp-sdk/es/utils/crypto)  
@@ -459,7 +459,7 @@ Decode a transaction
 
 | Param | Type | Description |
 | --- | --- | --- |
-| txHash | `String` | Transaction hash |
+| encodedTx | `String` | Encoded transaction |
 
 <a id="module_@aeternity/aepp-sdk/es/utils/crypto.encodeTx"></a>
 
